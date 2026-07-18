@@ -9,6 +9,10 @@ The code supports:
 - Internal testing
 - External evaluation on Duke and I-SPY1
 
+### V-LINC framework
+![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Flowchart.png)
+Note: Study setting and V-LINC framework. a, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. b, Geographic distribution of the in-house cohort and external validation cohorts. c, Data sources used for prognostic modeling, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. d, Overview of the V-LINC framework. DCE-MRI, radiology reports and structured clinical variables are encoded separately, combined with treatment-context prompts and integrated through an attention-based fusion network to estimate patient-level risk.
+
 ## Repository structure
 
 ```text
@@ -186,11 +190,26 @@ python test.py --config configs/default.yaml --cohort duke
 python test.py --config configs/default.yaml --cohort ispy1
 ```
 
+### Results
+
+*Overall survival
+![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Results_OS.png)
+Note: Overall survival stratification across internal and external cohorts. a, Distribution of survival status across the in-house and external cohorts used for overall survival analysis. b–d, Kaplan–Meier curves for V-LINC-defined low-risk and high-risk groups in the NKI training, validation and test sets. e–h, Kaplan–Meier curves for the ISPY1, DUKE, Sun Yat-Sen and RUMC external test sets.
+
+*Interpretation
+![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Analysis_OS.png)
+Note: Model interpretation and time-dependent performance for overall survival. a, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. b, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. c, Gradient-based attribution of structured clinical variables across patients. d, Decision curve analysis for 5-year overall survival. e, Volcano plot showing feature differences between V-LINC-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. f, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
 
 ## Citation
 
 Citation information will be added after publication.
 
-## License
+### Contact details
+If you have any questions please contact us. 
 
-License information will be added after institutional approval.
+Email: t.zhang@nki.nl / tianyu.zhang@radboudumc.nl (Dr. Tianyu Zhang); ritse.mann@radboudumc.nl (Prof. dr. Ritse M. Mann) 
+
+Links: [Netherlands Cancer Institute](https://www.nki.nl/), and [Radboud University Medical Center](https://www.radboudumc.nl/en/patient-care)
+
+<img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/NKI.png" width="166.98" height="87.12"/> <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/RadboudUMC.png" width="231" height="74.58"/>
+

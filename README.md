@@ -169,9 +169,7 @@ Citation information will be added after publication.
 ### Contact details
 If you have any questions please contact us. 
 
-Email: tianyu.zhang@radboudumc.nl / t.zhang@nki.nl (Dr. Tianyu Zhang); ritse.mann@radboudumc.nl (Prof. dr. Ritse M. Mann) 
+Email: tianyu.zhang@radboudumc.nl / t.zhang@nki.nl (Dr. Tianyu Zhang); jakob_nikolas.kather@tu-dresden.de (Prof. Jakob Nikolas Kather); ritse.mann@radboudumc.nl (Prof. Ritse M. Mann) 
 
-Links: [Radboud University Medical Center](https://www.radboudumc.nl/en/patient-care), and [Netherlands Cancer Institute](https://www.nki.nl/)
-
-<img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/RadboudUMC.png" width="231" height="74.58"/> <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/NKI.png" width="166.98" height="87.12"/> 
+<img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/RadboudUMC.png" width="231" height="74.58"/> <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/NKI.png" width="166.98" height="87.12"/>, and <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/TU_Dresden.png" width="166.98" height="87.12"/>
 

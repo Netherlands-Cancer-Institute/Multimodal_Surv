@@ -1,12 +1,9 @@
 # V-LINC: Individualized Breast Cancer Prognosis
 
-An interactive demonstration of the model is available at:
-
-https://huggingface.co/spaces/zhang0319/Multimodal_Surv
+An interactive platform is available at: https://huggingface.co/spaces/zhang0319/Multimodal_Surv
 
 This repository contains the preprocessing, training, validation, and evaluation code for **V-LINC**, a multimodal survival model for individualized breast cancer prognosis. The model integrates breast DCE-MRI, radiology reports, structured clinical variables, treatment information, and optional mutation features.
 
-https://huggingface.co/spaces/zhang0319/Multimodal_Surv
 
 ### V-LINC framework
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Flowchart.png)

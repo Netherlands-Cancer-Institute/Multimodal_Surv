@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+from typing import Tuple
+
+import nibabel as nib
+import numpy as np
+
+
+def load_nifti(path: Path) -> tuple[np.ndarray, np.ndarray, nib.Nifti1Header]:
+    image = nib.load(str(path))
+    dtype = np.int16 if path.name == "seg.nii.gz" else np.float32
+    return np.asarray(image.get_fdata(), dtype=dtype), image.affine, image.header
+
+
+def save_nifti(array: np.ndarray, affine: np.ndarray, header: nib.Nifti1Header, output_path: Path, is_mask: bool) -> None:
+    dtype = np.int16 if is_mask else np.float32
+    data = np.asarray(array, dtype=dtype)
+    output_header = header.copy()
+    output_header.set_data_dtype(dtype)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    nib.save(nib.Nifti1Image(data, affine, header=output_header), str(output_path))
+
+
+def crop_with_affine(array: np.ndarray, affine: np.ndarray, start: Tuple[int, int, int], size: Tuple[int, int, int]) -> tuple[np.ndarray, np.ndarray]:
+    x0, y0, z0 = start
+    sx, sy, sz = size
+    cropped = array[x0:x0 + sx, y0:y0 + sy, z0:z0 + sz].copy()
+    new_affine = affine.copy()
+    new_affine[:3, 3] = affine[:3, 3] + affine[:3, :3] @ np.asarray(start, dtype=float)
+    return cropped, new_affine
+
+
+def center_crop_or_pad(array: np.ndarray, affine: np.ndarray, target: tuple[int, int, int], is_mask: bool) -> tuple[np.ndarray, np.ndarray]:
+    output = array
+    updated_affine = affine.copy()
+    crop_starts = []
+    for current, target_size in zip(output.shape, target):
+        crop_starts.append(max((current - target_size) // 2, 0))
+
+    slices = tuple(slice(start, min(start + target_size, current)) for start, target_size, current in zip(crop_starts, target, output.shape))
+    output = output[slices]
+    updated_affine[:3, 3] += updated_affine[:3, :3] @ np.asarray(crop_starts, dtype=float)
+
+    pads = []
+    for current, target_size in zip(output.shape, target):
+        total = max(target_size - current, 0)
+        left = total // 2
+        pads.append((left, total - left))
+    left_padding = np.asarray([pad[0] for pad in pads], dtype=float)
+    updated_affine[:3, 3] -= updated_affine[:3, :3] @ left_padding
+    output = np.pad(output, pads, mode="constant", constant_values=0)
+    return output.astype(np.int16 if is_mask else np.float32), updated_affine
+
+
+def select_side(mask: np.ndarray) -> str:
+    midpoint = mask.shape[0] // 2
+    for label in (1, 2):
+        coordinates = np.where(mask == label)[0]
+        if coordinates.size:
+            return "left" if coordinates.mean() < midpoint else "right"
+    left_count = np.count_nonzero(mask[:midpoint])
+    right_count = np.count_nonzero(mask[midpoint:])
+    return "right" if right_count > left_count else "left"
+
+
+def process_case(case_dir: Path, output_root: Path, target_shape: tuple[int, int, int], y_keep: int, y_shift: int) -> None:
+    paths = [case_dir / name for name in ("dce1.nii.gz", "dce2.nii.gz", "seg.nii.gz")]
+    if not all(path.exists() for path in paths):
+        print(f"[Skip] Required files are missing in {case_dir.name}")
+        return
+
+    loaded = [load_nifti(path) for path in paths]
+    shapes = [entry[0].shape for entry in loaded]
+    if len(set(shapes)) != 1:
+        raise ValueError(f"Shape mismatch for {case_dir.name}: {shapes}")
+    reference_affine = loaded[0][1]
+    for name, (_, affine, _) in zip(("dce1", "dce2", "seg"), loaded):
+        if not np.allclose(affine, reference_affine, rtol=1e-5, atol=1e-4):
+            raise ValueError(f"Affine mismatch for {case_dir.name}: {name} is not aligned with dce1.")
+
+    x_size, y_size, z_size = shapes[0]
+    retained_y = min(y_keep, y_size)
+    y_start = min(max(y_shift, 0), max(y_size - retained_y, 0))
+    y_cropped = [crop_with_affine(array, affine, (0, y_start, 0), (x_size, retained_y, z_size)) for array, affine, _ in loaded]
+
+    side = select_side(y_cropped[2][0])
+    retained_x = x_size // 2
+    x_start = 0 if side == "left" else x_size - retained_x
+    xy_cropped = [crop_with_affine(array, affine, (x_start, 0, 0), (retained_x, retained_y, z_size)) for array, affine in y_cropped]
+
+    output_dir = output_root / case_dir.name
+    output_names = ("dce1.nii.gz", "dce2.nii.gz", "seg.nii.gz")
+    for index, ((array, affine), (_, _, header), name) in enumerate(zip(xy_cropped, loaded, output_names)):
+        final_array, final_affine = center_crop_or_pad(array, affine, target_shape, is_mask=index == 2)
+        save_nifti(final_array, final_affine, header, output_dir / name, is_mask=index == 2)
+    print(f"[OK] {case_dir.name}: side={side}, y_start={y_start}, x_start={x_start}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Crop DCE-MRI volumes and masks to a fixed tumor-containing breast volume.")
+    parser.add_argument("--input-root", type=Path, required=True)
+    parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--target-shape", type=int, nargs=3, default=(160, 160, 160))
+    parser.add_argument("--y-keep", type=int, default=176)
+    parser.add_argument("--y-shift", type=int, default=60)
+    args = parser.parse_args()
+
+    args.output_root.mkdir(parents=True, exist_ok=True)
+    for case_dir in sorted(path for path in args.input_root.iterdir() if path.is_dir()):
+        process_case(case_dir, args.output_root, tuple(args.target_shape), args.y_keep, args.y_shift)
+
+
+if __name__ == "__main__":
+    main()

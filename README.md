@@ -44,7 +44,6 @@ Python 3.9 or later is recommended.
 pip install -r requirements.txt
 ```
 
-The experiments were conducted using Python 3.9.21, PyTorch 2.8.0 with CUDA 12.8, and Transformers 4.57.6.
 
 ## RadioLOGIC
 

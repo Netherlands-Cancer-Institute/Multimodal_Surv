@@ -2,13 +2,6 @@
 
 This repository contains the preprocessing, training, validation, and evaluation code for **V-LINC**, a multimodal survival model for individualized breast cancer prognosis. The model integrates breast DCE-MRI, radiology reports, structured clinical variables, treatment information, and optional mutation features.
 
-The code supports:
-
-- Overall survival (OS)
-- Disease-free survival (DFS)
-- Internal testing
-- External evaluation on Duke and I-SPY1
-
 ### V-LINC framework
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Flowchart.png)
 Note: Study setting and V-LINC framework. a, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. b, Geographic distribution of the in-house cohort and external validation cohorts. c, Data sources used for prognostic modeling, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. d, Overview of the V-LINC framework. DCE-MRI, radiology reports and structured clinical variables are encoded separately, combined with treatment-context prompts and integrated through an attention-based fusion network to estimate patient-level risk.

@@ -55,7 +55,21 @@ def _normalize_stage(value: Any, n_post: bool = False) -> str:
 
 
 def encode_clinical_features(item: Dict[str, Any]) -> np.ndarray:
-    """Encode the 12 clinical variable groups as a 25 x 12 matrix."""
+    """
+    Encode the 12 clinical variable groups as a 25 x 12 matrix.
+
+    The representation includes six TNM-related columns, family history, age,
+    three receptor-related variables, and tumor histological type.
+
+    Pretreatment M stage is fixed to M0 because all patients in the study
+    cohort had no evidence of distant metastasis before treatment.
+
+    Post-treatment TNM information was available in the source records but was
+    intentionally excluded from the model input. Post-treatment T, N, and M
+    stages are therefore masked as -1 and encoded as unknown ("X") for every
+    patient.
+    """
+    
     matrix = np.zeros((25, 12), dtype=np.float32)
     categories = {
         0: ["0", "1", "1A", "1B", "1C", "1M", "1MI", "2", "3", "4", "4A", "4B", "4D", "IS", "X"],
@@ -65,14 +79,26 @@ def encode_clinical_features(item: Dict[str, Any]) -> np.ndarray:
         4: ["0", "0I", "0IS", "0S", "1", "1A", "1AS", "1B", "1BS", "1B1", "1B2", "1B3", "1B4", "1M", "1MI", "1MS", "2", "2A", "2B", "3A", "3B", "3C", "X"],
         5: ["0", "1", "X"],
     }
+    # values = [
+    #     _normalize_stage(item.get("T_stage")),
+    #     _normalize_stage(item.get("N_stage")),
+    #     _normalize_stage(item.get("M_stage")),
+    #     _normalize_stage(item.get("T_stage_post")),
+    #     _normalize_stage(item.get("N_stage_post"), n_post=True),
+    #     _normalize_stage(item.get("M_stage_post")),
+    # ]
+
+    masked_post_treatment_stage = -1
     values = [
         _normalize_stage(item.get("T_stage")),
         _normalize_stage(item.get("N_stage")),
-        _normalize_stage(item.get("M_stage")),
-        _normalize_stage(item.get("T_stage_post")),
-        _normalize_stage(item.get("N_stage_post"), n_post=True),
-        _normalize_stage(item.get("M_stage_post")),
+        _normalize_stage(pretreatment_m_stage),
+        _normalize_stage(masked_post_treatment_stage),
+        _normalize_stage(masked_post_treatment_stage),
+        _normalize_stage(masked_post_treatment_stage),
     ]
+
+    
     for column, value in enumerate(values):
         if value in categories[column]:
             matrix[categories[column].index(value), column] = 1.0

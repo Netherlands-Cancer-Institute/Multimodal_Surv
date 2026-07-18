@@ -50,19 +50,15 @@ Place the pretrained report encoder and tokenizer files in:
 RadioLOGIC/
 ```
 
-A typical directory contains:
+Contains:
 
 ```text
 RadioLOGIC/
 ├── config.json
-├── tokenizer_config.json
-├── tokenizer.json
 ├── vocab.json
 ├── merges.txt
 └── pytorch_model.bin
 ```
-
-Large model files such as `pytorch_model.bin` should be uploaded with Git LFS or hosted separately.
 
 ## MRI segmentation and preprocessing
 

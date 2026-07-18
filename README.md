@@ -85,67 +85,7 @@ The script selects the tumor-containing breast, applies the configured crop, and
 
 ## Metadata format
 
-Each metadata file must contain a `training` list:
-
-```json
-{
-  "name": "cohort_name",
-  "training": [
-    {
-      "identifier": "CASE_ID",
-      "time": 60,
-      "label": 0,
-      "time_drm": 48,
-      "label_drm": 1,
-      "reports_surv": "Radiology report text",
-      "AGE": 55,
-      "T_stage": "2",
-      "N_stage": "1",
-      "M_stage": "0",
-      "T_stage_post": "X",
-      "N_stage_post": "X",
-      "M_stage_post": "0",
-      "EPH_surv": [90, 90, 0],
-      "tumor_types": "Infiltrerend ductaal carcinoom",
-      "family_history": "no.",
-      "mutation": {
-        "BRCA1": -1,
-        "BRCA2": -1,
-        "PALB2": -1,
-        "TP53": -1,
-        "PTEN": -1,
-        "CDH1": -1,
-        "ATM": -1,
-        "CHEK2": -1,
-        "BARD1": -1,
-        "BRIP1": -1,
-        "RAD51C": -1,
-        "RAD51D": -1,
-        "STK11": -1,
-        "PIK3CA": -1,
-        "AKT1": -1,
-        "ERBB2": 1,
-        "ESR1": 0,
-        "NTRK1": -1,
-        "NTRK2": -1,
-        "NTRK3": -1,
-        "CCND1": -1,
-        "FGFR1": -1,
-        "GATA3": -1,
-        "MAP3K1": -1,
-        "NF1": -1,
-        "ARID1A": -1,
-        "KMT2C": -1,
-        "PIK3R1": -1,
-        "MYC": -1,
-        "RB1": -1
-      }
-    }
-  ]
-}
-```
-
-MRI file locations and filename patterns are configured separately for each cohort in `configs/default.yaml`.
+Example metadata files and the required data structure are provided in the `data/` directory.
 
 ## Configuration
 

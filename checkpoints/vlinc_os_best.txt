@@ -1,1 +1,7 @@
+The model weight files are not included in this repository because they exceed GitHub's file size limit.
 
+Please download the pretrained weights from:
+
+https://huggingface.co/zhang0319/Multimodel_Surv/tree/main/weights
+
+After downloading, place the required .pth files in the checkpoints/ directory.

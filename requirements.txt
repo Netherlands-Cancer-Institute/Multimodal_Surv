@@ -1,0 +1,18 @@
+# Deep learning
+torch>=2.1
+transformers>=4.38
+
+# Numerical and tabular processing
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+PyYAML>=6.0
+
+# Medical image processing
+nibabel>=5.1
+
+# Survival analysis
+lifelines>=0.28
+
+# Utilities
+tqdm>=4.66

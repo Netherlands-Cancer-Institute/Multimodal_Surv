@@ -196,9 +196,9 @@ Citation information will be added after publication.
 ### Contact details
 If you have any questions please contact us. 
 
-Email: t.zhang@nki.nl / tianyu.zhang@radboudumc.nl (Dr. Tianyu Zhang); ritse.mann@radboudumc.nl (Prof. dr. Ritse M. Mann) 
+Email: tianyu.zhang@radboudumc.nl / t.zhang@nki.nl (Dr. Tianyu Zhang); ritse.mann@radboudumc.nl (Prof. dr. Ritse M. Mann) 
 
-Links: [Netherlands Cancer Institute](https://www.nki.nl/), and [Radboud University Medical Center](https://www.radboudumc.nl/en/patient-care)
+Links: [Radboud University Medical Center](https://www.radboudumc.nl/en/patient-care), and [Netherlands Cancer Institute](https://www.nki.nl/)
 
-<img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/NKI.png" width="166.98" height="87.12"/> <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/RadboudUMC.png" width="231" height="74.58"/>
+<img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/RadboudUMC.png" width="231" height="74.58"/> <img src="https://github.com/Netherlands-Cancer-Institute/Multimodal_attention_DeepLearning/blob/main/Figures/NKI.png" width="166.98" height="87.12"/> 
 

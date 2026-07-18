@@ -35,8 +35,6 @@ Note: Study setting and V-LINC framework. a, Clinical context of pretreatment br
 
 ## Installation
 
-Python 3.9 or later is recommended.
-
 ```bash
 pip install -r requirements.txt
 ```

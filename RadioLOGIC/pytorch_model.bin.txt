@@ -1,0 +1,1 @@
+Please refer to https://huggingface.co/zhang0319/Multimodel_Surv/blob/main/models/radiobert_BigDataset_epoch10/pytorch_model.bin

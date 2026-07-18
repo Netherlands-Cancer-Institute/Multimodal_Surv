@@ -181,11 +181,11 @@ python test.py --config configs/default.yaml --cohort ispy1
 
 ### Results
 
-*Overall survival
+* Overall survival
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Results_OS.png)
 Note: Overall survival stratification across internal and external cohorts. a, Distribution of survival status across the in-house and external cohorts used for overall survival analysis. b–d, Kaplan–Meier curves for V-LINC-defined low-risk and high-risk groups in the NKI training, validation and test sets. e–h, Kaplan–Meier curves for the ISPY1, DUKE, Sun Yat-Sen and RUMC external test sets.
 
-*Interpretation
+* Interpretation
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Analysis_OS.png)
 Note: Model interpretation and time-dependent performance for overall survival. a, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. b, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. c, Gradient-based attribution of structured clinical variables across patients. d, Decision curve analysis for 5-year overall survival. e, Volcano plot showing feature differences between V-LINC-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. f, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
 

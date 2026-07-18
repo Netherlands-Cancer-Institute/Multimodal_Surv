@@ -1,4 +1,4 @@
-# V-LINC: Multimodal Breast Cancer Survival Prediction
+# V-LINC: Individualized Breast Cancer Prognosis
 
 This repository contains the preprocessing, training, validation, and evaluation code for **V-LINC**, a multimodal survival model for individualized breast cancer prognosis. The model integrates breast DCE-MRI, radiology reports, structured clinical variables, treatment information, and optional mutation features.
 

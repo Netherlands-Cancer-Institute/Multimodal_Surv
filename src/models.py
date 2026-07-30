@@ -29,7 +29,7 @@ class BasicBlock3D(nn.Module):
 
 
 class ResNet3D(nn.Module):
-    """3D ResNet-18 feature extractor with a 512-dimensional output."""
+    """3D feature extractor with a 512-dimensional output."""
 
     def __init__(self) -> None:
         super().__init__()

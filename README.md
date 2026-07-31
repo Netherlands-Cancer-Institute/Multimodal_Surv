@@ -2,12 +2,12 @@
 
 An interactive platform is available at: https://huggingface.co/spaces/zhang0319/Multimodal_Surv
 
-This repository contains the preprocessing, training, validation, and evaluation code for **V-LINC**, a multimodal survival model for individualized breast cancer prognosis. The model integrates breast DCE-MRI, radiology reports, structured clinical variables, treatment information, and optional mutation features.
+This repository contains the preprocessing, training, validation, and evaluation code for **V-LINC**, a multimodal survival prognostication system for individualized breast cancer prognosis. The system integrates breast DCE-MRI, radiology reports, structured clinical variables, treatment information, and optional mutation features.
 
 
 ### V-LINC framework
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Flowchart.png)
-Note: Study setting and V-LINC framework. a, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. b, Geographic distribution of the in-house cohort and external validation cohorts. c, Data sources used for prognostic modeling, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. d, Overview of the V-LINC framework. DCE-MRI, radiology reports and structured clinical variables are encoded separately, combined with treatment-context prompts and integrated through an attention-based fusion network to estimate patient-level risk.
+Note: Study setting and V-LINC framework. a, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. b, Geographic distribution of the in-house cohort and external validation cohorts. c, Data sources used for prognostic evaluation, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. d, Overview of the V-LINC framework. DCE-MRI, radiology reports and structured clinical variables are encoded separately, combined with treatment-context prompts and integrated through an attention-based fusion network to estimate patient-level risk.
 
 ## Repository structure
 
@@ -63,7 +63,7 @@ RadioLOGIC/
 
 ## MRI segmentation and preprocessing
 
-Tumor masks were obtained using our breast MRI segmentation model:
+Tumor masks were obtained using our breast MRI segmentation tool:
 
 https://huggingface.co/spaces/zhang0319/breast-mri-seg
 
@@ -163,7 +163,7 @@ Note: Overall survival stratification across internal and external cohorts. a, D
 
 * Interpretation
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Analysis_OS.png)
-Note: Model interpretation and time-dependent performance for overall survival. a, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. b, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. c, Gradient-based attribution of structured clinical variables across patients. d, Decision curve analysis for 5-year overall survival. e, Volcano plot showing feature differences between V-LINC-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. f, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
+Note: System interpretability and time-dependent performance for overall survival. a, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. b, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. c, Gradient-based attribution of structured clinical variables across patients. d, Decision curve analysis for 5-year overall survival. e, Volcano plot showing feature differences between V-LINC system-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. f, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
 
 ## Citation
 

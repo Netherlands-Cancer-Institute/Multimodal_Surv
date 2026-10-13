@@ -7,7 +7,7 @@ This repository contains the preprocessing, training, validation, and evaluation
 
 ### V-LINC system
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Flowchart.png)
-Note: Study setting and V-LINC system. a, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. b, Geographic distribution of the in-house cohort and external validation cohorts. c, Data sources used for prognostic evaluation, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. d, Overview of the V-LINC system.
+Note: Study setting and V-LINC system. A, Clinical context of pretreatment breast MRI acquisition and subsequent treatment pathways, including neoadjuvant therapy and surgery-first management. B, Geographic distribution of the in-house cohort and external validation cohorts. C, Data sources used for prognostic evaluation, including DCE-MRI and radiology reports from radiological evaluation, clinicopathological variables from pathological evaluation and longitudinal follow-up for survival endpoints. D, Overview of the V-LINC system.
 
 ## Repository structure
 
@@ -159,11 +159,11 @@ python test.py --config configs/default.yaml --cohort ispy1
 
 * Overall survival
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Results_OS.png)
-Note: Overall survival stratification across internal and external cohorts. a, Distribution of survival status across the in-house and external cohorts used for overall survival analysis. b–d, Kaplan–Meier curves for V-LINC-defined low-risk and high-risk groups in the NKI training, validation and test sets. e–h, Kaplan–Meier curves for the ISPY1, DUKE, Sun Yat-Sen and RUMC external test sets.
+Note: Overall survival stratification across internal and external cohorts. A, Distribution of survival status across the in-house and external cohorts used for overall survival analysis. B–D, Kaplan–Meier curves for V-LINC-defined low-risk and high-risk groups in the NKI training, validation and test sets. E–H, Kaplan–Meier curves for the ISPY1, DUKE, Sun Yat-Sen and RUMC external test sets.
 
 * Interpretation
 ![image](https://github.com/Netherlands-Cancer-Institute/Multimodal_Surv/blob/main/Figures/Analysis_OS.png)
-Note: System interpretability and time-dependent performance for overall survival. a, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. b, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. c, Gradient-based attribution of structured clinical variables across patients. d, Decision curve analysis for 5-year overall survival. e, Volcano plot showing feature differences between V-LINC system-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. f, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
+Note: System interpretability and time-dependent performance for overall survival. A, Representative DCE-MRI examples with lesion masks and Grad-CAM maps before and after contrast enhancement. B, Token-level attention maps from radiology reports, with higher-intensity tokens indicating greater contribution to the text-derived representation. C, Gradient-based attribution of structured clinical variables across patients. D, Decision curve analysis for 5-year overall survival. E, Volcano plot showing feature differences between V-LINC system-defined high-risk and low-risk groups across imaging, report, clinical and treatment-prompt features. F, Time-dependent receiver operating characteristic curves for overall survival from 1 to 10 years.
 
 ## Citation
 
